@@ -1,5 +1,6 @@
 var express = require("express");
 var app = express();
+var bcrypt = require("bcrypt");
 
 app.get('/',function(req,res,next){
     res.send("API is Run!!");
