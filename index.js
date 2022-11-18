@@ -17,7 +17,7 @@ var config = {
   // img storage confing
 var imgconfig = multer.diskStorage({
     destination:(req,file,callback)=>{
-        callback(null,"./");
+        callback(null,"./upload/image");
     },
     filename:(req,file,callback)=>{
       file.originalname = new Buffer(file.originalname, 'ascii').toString('utf-8');
