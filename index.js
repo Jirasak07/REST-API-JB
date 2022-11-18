@@ -74,7 +74,7 @@ app.get('/gg',function(req,res,next){
 })
 // app.use("/img",express.static("./asset/img"))
 app.post("/upload",upload.single("photo"),(req,res)=>{
-    console.log(req.file)
+   
     res.json(req.file)
   })
 app.listen(2222, function () {
