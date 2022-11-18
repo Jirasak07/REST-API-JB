@@ -37,6 +37,7 @@ var imgconfig = multer.diskStorage({
     storage:imgconfig,
     fileFilter:isImage
   })
+  app.use(cors());
 app.get('/',function(req,res,next){
     res.send("API is Run!!");
 })
