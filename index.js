@@ -17,7 +17,7 @@ var config = {
   // img storage confing
 var imgconfig = multer.diskStorage({
     destination:(req,file,callback)=>{
-        callback(null,"./asset/img");
+        callback(null,"./");
     },
     filename:(req,file,callback)=>{
       file.originalname = new Buffer(file.originalname, 'ascii').toString('utf-8');
@@ -72,9 +72,11 @@ app.get('/gg',function(req,res,next){
         });
       });
 })
-app.post('/upload',function(req,res,next){
-
-})
+// app.use("/img",express.static("./asset/img"))
+app.post("/upload",upload.single("photo"),(req,res)=>{
+    console.log(req.file)
+    res.json(req.file)
+  })
 app.listen(2222, function () {
     console.log("CORS PORT 2222");
   });
