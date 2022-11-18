@@ -1,6 +1,11 @@
 var express = require("express");
 var app = express();
 var bcrypt = require("bcrypt");
+var bodyParser = require("body-parser");
+var jsonParser = bodyParser.json();
+const saltRounds = 10;
+var jwt = require("jsonwebtoken");
+const secret = "JirasakPRJ2022";
 var sql = require("mssql");
 var config = {
     user: "merlin",
@@ -12,6 +17,7 @@ app.get('/',function(req,res,next){
     res.send("API is Run!!");
 })
 app.get('/gg',function(req,res,next){
+
     sql.connect(config, function (err) {
         if (err) console.log(err);
     
