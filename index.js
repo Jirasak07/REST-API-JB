@@ -4,7 +4,7 @@ var bcrypt = require("bcrypt");
 var sql = require("mssql");
 var config = {
     user: "merlin",
-    password: "Admin1629",
+    password: "Admin5409",
     server: "thaiserve.database.windows.net",
     database: "dbproject",
   };
