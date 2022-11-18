@@ -17,9 +17,7 @@ app.get('/',function(req,res,next){
     res.send("API is Run!!");
 })
 app.get('/gg',function(req,res,next){
-    bcrypt.hash("req.body.password", saltRounds, function (err, hash){
-        res.send(hsah)
-    }),
+   
     sql.connect(config, function (err) {
         if (err) console.log(err);
     
