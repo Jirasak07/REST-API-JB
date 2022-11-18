@@ -17,25 +17,19 @@ app.get('/',function(req,res,next){
     res.send("API is Run!!");
 })
 app.get('/gg',function(req,res,next){
-    var token = jwt.sign("123456dddfff", secret, {
-        expiresIn: "1h",
+    sql.connect(config, function (err) {
+        if (err) console.log(err);
+        // create Request object
+        var request = new sql.Request();
+        // query to the database and get the records
+        request.query("SELECT * FROM dbo.main", function (err, results) {
+          if (err) console.log(err);
+    
+          // send records as a response
+          res.send(results.recordset);
+          console.log(results.recordset)
+        });
       });
-    // sql.connect(config, function (err) {
-    //     if (err) console.log(err);
-    
-    //     // create Request object
-    //     var request = new sql.Request();
-    
-    //     // query to the database and get the records
-    //     request.query("SELECT * FROM dbo.main", function (err, results) {
-    //       if (err) console.log(err);
-    
-    //       // send records as a response
-    //       res.send(results.recordset);
-    //       console.log(results.recordset)
-    //     });
-    //   });
-    //   res.send(token)
 })
 app.listen(2222, function () {
     console.log("CORS PORT 2222");
