@@ -17,13 +17,15 @@ app.get('/',function(req,res,next){
     res.send("API is Run!!");
 })
 app.get('/gg',function(req,res,next){
-   
+    var token = jwt.sign("123456dddfff", secret, {
+        expiresIn: "1h",
+      });
     sql.connect(config, function (err) {
         if (err) console.log(err);
     
         // create Request object
         var request = new sql.Request();
-    
+    res.send(token)
         // query to the database and get the records
         request.query("SELECT * FROM dbo.main", function (err, results) {
           if (err) console.log(err);
