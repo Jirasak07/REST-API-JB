@@ -3,10 +3,10 @@ var app = express();
 var bcrypt = require("bcrypt");
 var sql = require("mssql");
 var config = {
-    user: "Merlin",
-    password: "Jirasak5409",
-    server: "jirasak.database.windows.net",
-    database: "jirasakdb",
+    user: "merlin",
+    password: "Admin1629",
+    server: "thaiserve.database.windows.net",
+    database: "dbproject",
   };
 app.get('/',function(req,res,next){
     res.send("API is Run!!");
