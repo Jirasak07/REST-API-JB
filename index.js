@@ -2,7 +2,12 @@ var express = require("express");
 var app = express();
 var bcrypt = require("bcrypt");
 var sql = require("mssql");
-
+var config = {
+    user: "Merlin",
+    password: "Jirasak5409",
+    server: "jirasak.database.windows.net",
+    database: "jirasakdb",
+  };
 app.get('/',function(req,res,next){
     res.send("API is Run!!");
 })
