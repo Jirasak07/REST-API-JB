@@ -1,11 +1,12 @@
 var express = require("express");
 var app = express();
-var bcrypt = require("bcrypt");
+// var bcrypt = require("bcrypt");
 var bodyParser = require("body-parser");
 var jsonParser = bodyParser.json();
-const saltRounds = 10;
-var jwt = require("jsonwebtoken");
-const secret = "JirasakPRJ2022";
+// const saltRounds = 10;
+// var jwt = require("jsonwebtoken");
+// const secret = "JirasakPRJ2022";
+const multer = require("multer");
 var sql = require("mssql");
 var config = {
     user: "merlin",
@@ -13,6 +14,29 @@ var config = {
     server: "thaiserve.database.windows.net",
     database: "dbproject",
   };
+  // img storage confing
+var imgconfig = multer.diskStorage({
+    destination:(req,file,callback)=>{
+        callback(null,"./asset/img");
+    },
+    filename:(req,file,callback)=>{
+      file.originalname = new Buffer(file.originalname, 'ascii').toString('utf-8');
+        callback(null,file.originalname)
+    }
+  });
+  // img filter
+  const isImage = (req,file,callback)=>{
+    if(file.mimetype.startsWith("image")){
+        callback(null,true)
+    }else{
+        callback(null,Error("only image is allowd"))
+    }
+  }
+  
+  var upload = multer({
+    storage:imgconfig,
+    fileFilter:isImage
+  })
 app.get('/',function(req,res,next){
     res.send("API is Run!!");
 })
@@ -30,6 +54,9 @@ app.get('/gg',function(req,res,next){
           console.log(results.recordset)
         });
       });
+})
+app.post('/upload',function(req,res,next){
+
 })
 app.listen(2222, function () {
     console.log("CORS PORT 2222");
