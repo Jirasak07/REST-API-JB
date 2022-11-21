@@ -94,7 +94,7 @@ app.post("/login", jsonParser, function (req, res, next) {
       ,[ustatus]
       ,[role_id]
       ,[mid]
-  FROM [dbo].[user] WHERE [username] = '${name}' `,
+  FROM [dbo].[user] WHERE [username] = 'admin' `,
       function (err, results) {
         if (err) {
           res.send({ status: "ข้อผิดพลาด", message: err });
