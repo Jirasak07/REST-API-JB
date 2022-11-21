@@ -90,7 +90,7 @@ app.post("/login", jsonParser, function (req, res, next) {
       `select * from dbo.user where username = ${name} `,
       function (err, results) {
         if (err) {
-          res.send({ status: "error", message: err });
+          res.send({ status: "ข้อผิดพลาด", message: err });
           return;
         }
         if (results.length == 0) {
