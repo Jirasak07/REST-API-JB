@@ -87,7 +87,7 @@ app.post("/login", jsonParser, function (req, res, next) {
     var request = new sql.Request();
     var username = "admin";
     request.query(
-      `select * from dbo.user where username = ${username}`,
+      `select * from dbo.user where username = "${username}"`,
       function (err, results) {
         if (err) {
           res.send({ status: "error", message: err });
