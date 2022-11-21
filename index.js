@@ -100,7 +100,7 @@ app.post("/login", jsonParser, function (req, res, next) {
           res.send({ status: "ข้อผิดพลาด", message: err });
           return;
         }
-        res.json({status:"Yes"})
+        res.json({status:"Yes"}, results.recordset)
         // if (results.length == 0) {
         //   res.send({ status: "error", message: "ไม่พบผู้ใช้ ?" });
         //   return;
