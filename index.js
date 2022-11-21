@@ -85,7 +85,7 @@ app.post("/login", jsonParser, function (req, res, next) {
   sql.connect(config, function (err) {
     if (err) console.log(err);
     var request = new sql.Request();
-    var name = "admin";
+    var name = 'admin';
     request.query(
       `SELECT [uid]
       ,[username]
@@ -94,7 +94,7 @@ app.post("/login", jsonParser, function (req, res, next) {
       ,[ustatus]
       ,[role_id]
       ,[mid]
-  FROM [dbo].[user] WHERE [username] = ${name} `,
+  FROM [dbo].[user] WHERE [username] = '${name}' `,
       function (err, results) {
         if (err) {
           res.send({ status: "ข้อผิดพลาด", message: err });
