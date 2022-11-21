@@ -73,16 +73,16 @@ app.get('/gg',function(req,res,next){
         });
       });
 })
-app.get('/product',function(req,res,next){
-  sql.connect(config,function(err){
-    if(err)console.log(err);
-    var request = new sql.Request();
-    request.query("select * from dbo.product",function(err, results){
-      if(err)console.log(err);
-      res.send(results.recordset);
-    })
-  })
-})
+// app.get('/product',function(req,res,next){
+//   sql.connect(config,function(err){
+//     if(err)console.log(err);
+//     var request = new sql.Request();
+//     request.query("select * from dbo.product",function(err, results){
+//       if(err)console.log(err);
+//       res.send(results.recordset);
+//     })
+//   })
+// })
 // app.use("/img",express.static("./asset/img"))
 app.post("/upload",upload.single("photo"),(req,res)=>{
    
