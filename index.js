@@ -6,6 +6,7 @@ var jsonParser = bodyParser.json();
 // const saltRounds = 10;
 // var jwt = require("jsonwebtoken");
 // const secret = "JirasakPRJ2022";
+const multer = require("multer");
 var sql = require("mssql");
 var config = {
     user: "merlin",
@@ -13,31 +14,29 @@ var config = {
     server: "thaiserve.database.windows.net",
     database: "dbproject",
   };
-// const multer = require("multer");
-
-//   // img storage confing
-// var imgconfig = multer.diskStorage({
-//     destination:(req,file,callback)=>{
-//         callback(null,"./upload/image");
-//     },
-//     filename:(req,file,callback)=>{
-//       file.originalname = new Buffer(file.originalname, 'ascii').toString('utf-8');
-//         callback(null,file.originalname)
-//     }
-//   });
-//   // img filter
-//   const isImage = (req,file,callback)=>{
-//     if(file.mimetype.startsWith("image")){
-//         callback(null,true)
-//     }else{
-//         callback(null,Error("only image is allowd"))
-//     }
-//   }
+  // img storage confing
+var imgconfig = multer.diskStorage({
+    destination:(req,file,callback)=>{
+        callback(null,"https://github.com/Jirasak07/REST-API-JB/tree/Jirasak07-patch-1/upload/image");
+    },
+    filename:(req,file,callback)=>{
+      file.originalname = new Buffer(file.originalname, 'ascii').toString('utf-8');
+        callback(null,file.originalname)
+    }
+  });
+  // img filter
+  const isImage = (req,file,callback)=>{
+    if(file.mimetype.startsWith("image")){
+        callback(null,true)
+    }else{
+        callback(null,Error("only image is allowd"))
+    }
+  }
   
-//   var upload = multer({
-//     storage:imgconfig,
-//     fileFilter:isImage
-//   })
+  var upload = multer({
+    storage:imgconfig,
+    fileFilter:isImage
+  })
 app.use(function(req,res,next){
       // Website you wish to allow to connect
       res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8888');
@@ -73,16 +72,6 @@ app.get('/gg',function(req,res,next){
         });
       });
 })
-// app.get('/product',function(req,res,next){
-//   sql.connect(config,function(err){
-//     if(err)console.log(err);
-//     var request = new sql.Request();
-//     request.query("select * from dbo.product",function(err, results){
-//       if(err)console.log(err);
-//       res.send(results.recordset);
-//     })
-//   })
-// })
 // app.use("/img",express.static("./asset/img"))
 app.post("/upload",upload.single("photo"),(req,res)=>{
    
