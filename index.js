@@ -86,6 +86,7 @@ app.post("/login", jsonParser, function (req, res, next) {
     if (err) console.log(err);
     var request = new sql.Request();
     var name = req.body.username;
+    var password = req.body.password;
     request.query(
       `SELECT [uid]
       ,[username]
@@ -105,13 +106,13 @@ app.post("/login", jsonParser, function (req, res, next) {
           res.send({ status: "error", message: "ไม่พบผู้ใช้ ?" });
           return;
         } else {
-          if (req.body.password == results[0].password) {
+          if (password == results.recordset[0].password) {
             var token = "is token";
             res.send({
               status: "ok",
               message: "เข้าสู่ระบบสำเร็จ",
               token,
-              uid: results[0].uid,
+              uid: results.recordset[0].uid,
             });
           } else {
             res.send({
