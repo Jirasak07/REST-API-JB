@@ -90,23 +90,23 @@ app.post("/login", jsonParser, function (req, res, next) {
       `SELECT * FROM user WHERE username = ${username}`,
       function (err, results, fields) {
         if (err) {
-          res.json({ status: "error", message: err });
+          res.send({ status: "error", message: err });
           return;
         }
         if (results.length == 0) {
-          res.json({ status: "error", message: "ไม่พบผู้ใช้ ?" });
+          res.send({ status: "error", message: "ไม่พบผู้ใช้ ?" });
           return;
         } else {
           if (req.body.password == results[0].password) {
             var token = "is token";
-            res.json({
+            res.send({
               status: "ok",
               message: "เข้าสู่ระบบสำเร็จ",
               token,
               uid: results[0].uid,
             });
           } else {
-            res.json({
+            res.send({
               status: "error",
               message: "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง",
             });
