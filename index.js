@@ -17,7 +17,7 @@ var config = {
   // img storage confing
 var imgconfig = multer.diskStorage({
     destination:(req,file,callback)=>{
-        callback(null,"https://github.com/Jirasak07/REST-API-JB/tree/Jirasak07-patch-1/upload/image");
+        callback(null,"./upload/image");
     },
     filename:(req,file,callback)=>{
       file.originalname = new Buffer(file.originalname, 'ascii').toString('utf-8');
