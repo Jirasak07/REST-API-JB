@@ -57,6 +57,23 @@ app.use(function(req,res,next){
 app.get('/',function(req,res,next){
     res.send("API is Run!!");
 })
+
+app.get('/product',function(req,res,next){
+  sql.connect(config, function (err) {
+      if (err) console.log(err);
+      // create Request object
+      var request = new sql.Request();
+      // query to the database and get the records
+      request.query("SELECT * FROM dbo.product", function (err, results) {
+        if (err) console.log(err);
+  
+        // send records as a response
+        res.send(results.recordset);
+        console.log(results.recordset)
+      });
+    });
+})
+
 app.get('/gg',function(req,res,next){
     sql.connect(config, function (err) {
         if (err) console.log(err);
