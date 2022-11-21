@@ -87,7 +87,7 @@ app.post("/login", jsonParser, function (req, res, next) {
     var request = new sql.Request();
     const username = req.body.username;
     request.query(
-      `SELECT * FROM dbo.user WHERE username = ${username}`,
+      `SELECT * FROM user WHERE username = ${username}`,
       function (err, results, fields) {
         if (err) {
           res.json({ status: "error", message: err });
@@ -96,7 +96,7 @@ app.post("/login", jsonParser, function (req, res, next) {
         if (results.length == 0) {
           res.json({ status: "error", message: "ไม่พบผู้ใช้ ?" });
           return;
-        } else if (results.length != 0) {
+        } else {
           if (req.body.password == results[0].password) {
             var token = "is token";
             res.json({
