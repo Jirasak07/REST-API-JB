@@ -87,7 +87,7 @@ app.post("/login", jsonParser, function (req, res, next) {
     var request = new sql.Request();
     var name = "admin";
     request.query(
-      `select * from dbo.user where username = ${name} `,
+      `select * from product where username = ${name} `,
       function (err, results) {
         if (err) {
           res.send({ status: "ข้อผิดพลาด", message: err });
