@@ -101,7 +101,7 @@ app.post("/login", jsonParser, function (req, res, next) {
           res.send({ status: "ข้อผิดพลาด", message: err });
           return;
         }
-        res.send(results.recordset[0].password);
+        // res.send(results.recordset[0].password);
         if (results.recordset.length == 0) {
           res.send({ status: "error", message: "ไม่พบผู้ใช้ ?" });
           return;
