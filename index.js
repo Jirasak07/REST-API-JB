@@ -124,7 +124,7 @@ app.post("/login", jsonParser, function (req, res, next) {
         // send records as a response
         // res.send(results.recordset);
         // console.log(results.recordset);
-      }
+      
     );
   });
 });
